@@ -3,12 +3,13 @@ package com.backend.backend.domain;
 import jakarta.persistence.*;
 
 @Entity
-
-public class Empresa_Fornecedor {
+@IdClass(EmpresaFornecedorId.class)
+public class EmpresaFornecedor {
     @Id
     @ManyToOne(optional = false)
     @JoinColumn(name = "idEmpresa", nullable = false)
     private Empresa empresa;
+    @Id
     @ManyToOne(optional = false)
     @JoinColumn(name = "idFornecedor", nullable = false)
     private Fornecedor fornecedor;
