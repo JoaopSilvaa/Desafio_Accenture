@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Inserir Dados da Empresa</h1>
 <div mat-dialog-content>
-  <form [formGroup]="empresaForm">
+  <form [formGroup]="empresaForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <mat-label>CNPJ</mat-label>
       <input matInput formControlName="cnpj" />
@@ -33,9 +33,8 @@
       <mat-label>Número</mat-label>
       <input matInput formControlName="numero" />
     </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
   </form>
-</div>
-<div mat-dialog-actions>
-  <button mat-raised-button color="primary" type="submit">Salvar</button>
-  <button mat-button (click)="onNoClick()">Cancelar</button>
 </div>
