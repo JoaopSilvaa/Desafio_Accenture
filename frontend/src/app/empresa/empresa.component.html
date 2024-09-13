@@ -1,0 +1,32 @@
+<div class="container">
+  <button (click)="openDialog()">Inserir Empresa</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>CNPJ</th>
+      <th>Nome Fantasia</th>
+      <th>CEP</th>
+      <th>Logradouro</th>
+      <th>Bairro</th>
+      <th>Cidade</th>
+      <th>Estado</th>
+      <th>Número</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empresa of empresas">
+      <td>{{ empresa.idEmpresa }}</td>
+      <td>{{ empresa.cnpj }}</td>
+      <td>{{ empresa.nomeFantasia }}</td>
+      <td>{{ empresa.cep }}</td>
+      <td>{{ empresa.logradouro }}</td>
+      <td>{{ empresa.bairro }}</td>
+      <td>{{ empresa.cidade }}</td>
+      <td>{{ empresa.estado }}</td>
+      <td>{{ empresa.numero }}</td>
+    </tr>
+  </tbody>
+</table>
