@@ -11,7 +11,7 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>CEP</mat-label>
-      <input (change)="onChange()" matInput formControlName="cep" />
+      <input (ngModelChange)="onChange()" matInput formControlName="cep" maxlength="8"/>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Logradouro</mat-label>
@@ -36,6 +36,6 @@
   </form>
 </div>
 <div mat-dialog-actions>
+  <button mat-raised-button color="primary" type="submit">Salvar</button>
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button (click)="onSubmit()">Salvar</button>
 </div>

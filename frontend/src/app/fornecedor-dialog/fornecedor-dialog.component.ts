@@ -79,6 +79,10 @@ export class FornecedorDialogComponent {
           cidade: response.localidade,
           estado: response.estado
         });
+        if(response.erro) {
+          console.error('Erro ao buscar o CEP:');
+          this.openSnackBar('Erro ao buscar o CEP. Verifique o valor informado.', 'Fechar');
+        }
       });
     }
   }
