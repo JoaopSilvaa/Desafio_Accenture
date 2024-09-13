@@ -27,8 +27,6 @@ export class EmpresaComponent implements OnInit {
   ngOnInit(): void {
     this.empresaService.listarEmpresas().subscribe(data => {
       this.empresas = data;
-
-      console.log(data);
     });
   }
 
@@ -42,10 +40,18 @@ export class EmpresaComponent implements OnInit {
       if (result) {
         this.empresaService.listarEmpresas().subscribe(data => {
           this.empresas = data;
-
-          console.log(data);
         });
       }
     });
+  }
+
+  deleteItem(id: number): void {
+    if (confirm('Tem certeza que deseja deletar este item?')) {
+      this.empresaService.excluirEmpresa(id).subscribe(() => {
+        this.empresaService.listarEmpresas().subscribe(data => {
+          this.empresas = data;
+        });
+      });
+    }
   }
 }

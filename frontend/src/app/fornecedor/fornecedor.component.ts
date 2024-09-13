@@ -53,7 +53,16 @@ export class FornecedorComponent implements OnInit {
   formatarData(data: string): string {
     console.log(data);
     return this.datePipe.transform(data, 'dd/MM/yyyy') || '';
+  }
 
+  deleteItem(id: number): void {
+    if (confirm('Tem certeza que deseja deletar este item?')) {
+      this.fornecedorService.excluirFornecedor(id).subscribe(() => {
+        this.fornecedorService.listarFornecedores().subscribe(data => {
+          this.fornecedores = data;
+        });
+      });
+    }
   }
 
 }

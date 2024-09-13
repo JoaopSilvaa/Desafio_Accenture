@@ -36,7 +36,6 @@ tbody tr:empty {
 }
 
 button {
-  background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -44,11 +43,9 @@ button {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-  margin-top: 2em;
 }
 
 button:hover {
-  background-color: #0056b3;
   transform: scale(1.05);
 }
 
@@ -59,6 +56,23 @@ button:focus {
 .container {
   display: flex;
   justify-content: flex-end;
+}
+
+.button-create {
+  background-color: #007bff;
+  margin-top: 2em;
+}
+
+.button-create:hover {
+  background-color: #0056b3;
+}
+
+.button-delete {
+  background-color: #ba0505;
+}
+
+.button-delete:hover {
+  background-color: #c83838;
 }
 
 
