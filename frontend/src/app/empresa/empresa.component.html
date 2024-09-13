@@ -1,4 +1,5 @@
 <div class="container">
+  <input [(ngModel)]="filtro" (input)="onChange()" placeholder="Filtrar" />
   <button class="button-create" (click)="openDialog()">Inserir Empresa</button>
 </div>
 

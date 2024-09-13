@@ -5,6 +5,7 @@ import {RouterLink, RouterOutlet} from "@angular/router";
 import {FornecedorService} from "../services/fornecedor.service";
 import {FornecedorDialogComponent} from "../fornecedor-dialog/fornecedor-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-fornecedor',
@@ -13,8 +14,8 @@ import {MatDialog} from "@angular/material/dialog";
     HttpClientModule,
     RouterOutlet,
     RouterLink,
-    NgForOf,
-    ],
+    NgForOf, FormsModule,
+  ],
   templateUrl: './fornecedor.component.html',
   styleUrl: './fornecedor.component.css',
   providers: [DatePipe]
@@ -22,12 +23,14 @@ import {MatDialog} from "@angular/material/dialog";
 
 export class FornecedorComponent implements OnInit {
   fornecedores: any[] = [];
-
+  filtro: String = '';
+  fornecedoresFixo: any[] = [];
   constructor(private fornecedorService: FornecedorService, public dialog: MatDialog,  private datePipe: DatePipe,) { }
 
   ngOnInit(): void {
     this.fornecedorService.listarFornecedores().subscribe(data => {
       this.fornecedores = data;
+      this.fornecedoresFixo = data;
     });
   }
 
@@ -41,6 +44,7 @@ export class FornecedorComponent implements OnInit {
       if (result) {
         this.fornecedorService.listarFornecedores().subscribe(data => {
           this.fornecedores = data;
+          this.fornecedoresFixo = data;
         });
       }
     });
@@ -58,6 +62,12 @@ export class FornecedorComponent implements OnInit {
         });
       });
     }
+  }
+
+  onChange(): void {
+    this.fornecedores = this.fornecedoresFixo.filter(fornecedor => {
+      return this.filtro == '' || (fornecedor.nome.includes(this.filtro) || fornecedor.cnpj_CPF.toString().includes(this.filtro));
+    })
   }
 
 }

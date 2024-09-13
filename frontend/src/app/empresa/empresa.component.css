@@ -55,7 +55,7 @@ button:focus {
 
 .container {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .button-create {
@@ -74,6 +74,28 @@ button:focus {
 .button-delete:hover {
   background-color: #c83838;
 }
+
+input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 2em;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0px 2px 8px rgba(0, 123, 255, 0.4);
+}
+
+input::placeholder {
+  color: #888;
+}
+
 
 
 

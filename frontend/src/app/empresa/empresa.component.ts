@@ -5,6 +5,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {EmpresaDialogComponent} from "../empresa-dialog/empresa-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-empresa',
@@ -13,7 +16,7 @@ import {MatDialog} from "@angular/material/dialog";
     HttpClientModule,
     RouterOutlet,
     RouterLink,
-    NgForOf
+    NgForOf, FormsModule, MatFormField, MatInput, MatLabel, ReactiveFormsModule
   ],
   templateUrl: './empresa.component.html',
   styleUrl: './empresa.component.css'
@@ -21,11 +24,14 @@ import {MatDialog} from "@angular/material/dialog";
 
 export class EmpresaComponent implements OnInit {
   empresas: any[] = [];
+  filtro: String = '';
+  empresasFixo: any[] = [];
 
   constructor(private empresaService: EmpresaService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.empresaService.listarEmpresas().subscribe(data => {
+      this.empresasFixo = data;
       this.empresas = data;
     });
   }
@@ -39,6 +45,7 @@ export class EmpresaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.empresaService.listarEmpresas().subscribe(data => {
+          this.empresasFixo = data;
           this.empresas = data;
         });
       }
@@ -49,9 +56,19 @@ export class EmpresaComponent implements OnInit {
     if (confirm('Tem certeza que deseja deletar este item?')) {
       this.empresaService.excluirEmpresa(id).subscribe(() => {
         this.empresaService.listarEmpresas().subscribe(data => {
+          this.empresasFixo = data;
           this.empresas = data;
         });
       });
     }
   }
+
+
+  onChange(): void {
+    this.empresas = this.empresasFixo.filter(empresa => {
+      return this.filtro == '' || (empresa.nomeFantasia.includes(this.filtro) || empresa.cnpj.toString().includes(this.filtro));
+    })
+  }
+
+
 }
