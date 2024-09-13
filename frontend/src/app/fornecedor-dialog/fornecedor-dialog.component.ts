@@ -58,9 +58,13 @@ export class FornecedorDialogComponent {
 
   onSubmit(): void {
     if (this.validarFormulario()) {
-      this.fornecedorService.salvarFornecedor(this.fornecedorForm.value).subscribe(response => {
-        this.dialogRef.close(true);
-      });
+      if (this.validarIdade()) {
+        this.fornecedorService.salvarFornecedor(this.fornecedorForm.value).subscribe(response => {
+          this.dialogRef.close(true);
+        });
+      } else {
+        this.openSnackBar('Não é permitido cadastro para menores de 18 anos em seu estado.', 'Fechar');
+      }
     } else {
       this.openSnackBar('Todos os campos devem ser preenchidos.', 'Fechar');
     }
@@ -97,5 +101,13 @@ export class FornecedorDialogComponent {
     this.snackBar.open(message, action, {
       duration: 3000, // Duração do Snackbar em milissegundos
     });
+  }
+
+  validarIdade(): boolean {
+    const hoje = new Date();
+    const nascimento = new Date(this.fornecedorForm.value.data_de_Nascimento);
+    const diferencaDatas = hoje.getTime() - nascimento.getTime();
+    const idade = Math.floor(Math.ceil(Math.abs(diferencaDatas) / (1000 * 3600 * 24)) / 365.25);
+    return !(this.fornecedorForm.value.estado == 'Paraná' && idade < 18);
   }
 }
