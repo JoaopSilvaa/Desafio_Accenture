@@ -28,8 +28,6 @@ export class FornecedorComponent implements OnInit {
   ngOnInit(): void {
     this.fornecedorService.listarFornecedores().subscribe(data => {
       this.fornecedores = data;
-
-      console.log(data);
     });
   }
 
@@ -43,15 +41,12 @@ export class FornecedorComponent implements OnInit {
       if (result) {
         this.fornecedorService.listarFornecedores().subscribe(data => {
           this.fornecedores = data;
-
-          console.log(data);
         });
       }
     });
   }
 
   formatarData(data: string): string {
-    console.log(data);
     return this.datePipe.transform(data, 'dd/MM/yyyy') || '';
   }
 
