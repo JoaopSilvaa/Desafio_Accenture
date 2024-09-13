@@ -1,0 +1,47 @@
+h1 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+mat-dialog-content {
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+button {
+  margin-left: 10px;
+}
+
+button.mat-button {
+  color: #007bff;
+}
+
+button.mat-button:hover {
+  background-color: #e9ecef;
+}
+
+button.mat-button:last-child {
+  color: #28a745;
+}
+
+button.mat-button:last-child:hover {
+  background-color: #d4edda;
+}
+
+.mat-dialog-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
